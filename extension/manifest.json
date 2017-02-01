@@ -1,0 +1,20 @@
+{  
+   "manifest_version":2,
+   "name":"SciNet",
+   "version":"0.1",
+   "content_scripts":[  
+      {  
+         "matches":[  
+            "<all_urls>"
+         ],
+         "js":[  
+            "jquery-3.1.1.js",
+            "content.js"
+         ]
+      }
+   ],
+   "browser_action":{  
+      "default_icon":"icon.png",
+      "default_popup":"popup.html"
+   }
+}
