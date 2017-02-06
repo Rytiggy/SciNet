@@ -5,6 +5,13 @@ body{
 	margin:0;
 	padding:0;
 }
+html{
+	width:300px;
+	height:250px;
+	margin:0;
+	padding:0;
+
+}
 nav{
 	background: #fff;
 	height:60px;
@@ -19,4 +26,14 @@ nav img{
 	padding: 5px;
 	margin: 0 auto;
 
+}
+
+.footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 10px;
+	background-color: #3d3d45;
+	margin:0;
+	padding: 0;
 }
