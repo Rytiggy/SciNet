@@ -9,7 +9,7 @@ Ensure that the Developer mode checkbox in the top right-hand corner is checked.
 Select the button "Load unpacked extension" and navigate the the folder named extension and select it.
 
 ## Backend
-To use the API backend for development, create a new virtualenv if you don't already have one (with virtualenvwrapper, `mkvirtualenv <envname>`), make sure you're in it (`workon <envname>`) and run `pip install backend/requirements.txt` from the repo root to make sure your dependencies are up to date.
+To use the API backend for development, create a new virtualenv if you don't already have one (with virtualenvwrapper, `mkvirtualenv <envname>`), make sure you're in it (`workon <envname>`) and run `pip install -r backend/requirements.txt` from the repo root to make sure your dependencies are up to date.
 
 Make sure all new migrations and changes to the database schema have been made by running 
 
