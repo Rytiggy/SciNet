@@ -17,7 +17,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class CitationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Citation
-        fields = ('pk', 'name', 'authors', 'datepublished','dateuploaded','doi')
+        fields = ('pk', 'name', 'authors', 'datepublished','dateuploaded','doi','summary')
         readonly_fields = ('file_link')
 
     class JSONAPIMeta:
