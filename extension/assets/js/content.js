@@ -28,7 +28,7 @@ for (var i = 0; i <= obj.length; i++)
       var aAuthor,aDate,aName,aSummary,splitData;
 
       //Should I run on this site?
-      if(document.location.hostname == site){
+      if(document.location.hostname == site && window.location.pathname != "/"){
       	
 
       	//Toggle stats tell them we are running]
@@ -91,9 +91,9 @@ for (var i = 0; i <= obj.length; i++)
 
 // Okay, so what's required here?
 // Specifications:
-// 1. The extension recognizes when it's on a publisher's page
-	 //what makes a publisher's page a publisher's page
-// 2. The extension, when on a page with citations, scrapes those citations.
+// 1. The extension recognizes when it's on a publisher's page DONE
+	 //what makes a publisher's page a publisher's page DONE
+// 2. The extension, when on a page with citations, scrapes those citations. DONE 
 	//gets the entire body
 	//var html = document.body.innerHTML;
 
