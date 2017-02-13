@@ -19,22 +19,57 @@ chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
 			"site": "ryanmasonline.com"
 		}
 	]
+var jsonBLOB = null;
 
 for (var i = 0; i <= obj.length; i++)
 {
-	try{
+	try{ 
       var site = obj[i].site;
-      if(document.location.hostname == site){
-        console.log(site);	
+      var aAuthor,aDate,aName,aSummary,splitData;
 
-		//find all blocks of text containing the word abstract   	    
-	  	 var foundin = $('div:contains("Abstract")');
-	  	 foundin.each(function(){
-	        console.log($(this).text());
-	     });
+      //Should I run on this site?
+      if(document.location.hostname == site){
+      	
+
+      	//Toggle stats tell them we are running]
+      	$( ".stats" ).find('span').addClass( ".text-success" );
+
+
+      	$('div.pane-content>div').each(function(){ 
+      		
+      		aAuthor = $( "ol.contributor-list" ).find( "span" ).text().replace(/\s+/g, " ");
+      		aData =$( ".meta-line" ).text().replace(/\s+/g, " ");
+      		splitData = aData.split(':');
+      		aSummary = $( "div.summary-view" ).find( "p" ).text().replace(/\s+/g, " ");
+      		aName = $( "div.highwire-cite-title" ).text().replace(/\s+/g, " ");
+
+
+
+      	});
+
+
+
+      	var jsonValue ={ site :{
+      		 "text": [
+      			 {"author": aAuthor},
+      			 {"data": [
+      			 	{"date": splitData[0]},
+      			 	{"vol": splitData[1]},
+      			 	{"doi": splitData[2]}
+      			 ]},
+      			 {"paperName": aName},
+      			 {"summary": aSummary}
+      		 ]}
+      		};
+
+      	console.log(JSON.stringify(jsonValue));
+
+
+
+
       }
   	}catch(err){
-  	  console.log("Error code 0 dont worry about this");
+  	  //console.log("Error code 0 dont worry about this" + err);
 
   	}
 
