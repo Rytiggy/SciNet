@@ -11,7 +11,7 @@ class Citation(models.Model):
     doi = models.CharField(max_length=300, default='Unknown')
     datepublished = models.CharField(max_length=300, default='Unknown')
     name = models.CharField(max_length=300, default='Unknown')
-
+    summary = models.TextField(default='No Summary Found')
 
     def __str__(self):
         return self.name
