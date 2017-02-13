@@ -52,11 +52,9 @@ for (var i = 0; i <= obj.length; i++)
       	var jsonValue ={ site :{
       		 "text": [
       			 {"author": aAuthor},
-      			 {"data": [
-      			 	{"date": splitData[0]},
-      			 	{"vol": splitData[1]},
-      			 	{"doi": splitData[2]}
-      			 ]},
+      			 {"date": splitData[0]},
+      			 {"vol": splitData[1]},
+      			 {"doi": splitData[2]},
       			 {"paperName": aName},
       			 {"summary": aSummary}
       		 ]}
@@ -65,6 +63,23 @@ for (var i = 0; i <= obj.length; i++)
       	console.log(JSON.stringify(jsonValue));
 
 
+		$(document).ready(function() {
+		       $("#test").submit(function(event){
+		       	  console.log(" *<DEBUG>* Preparing Ajax");
+		            $.ajax({
+		                 type:"POST",
+		                 url:"/api/citations/",
+		                 data: {
+		                        'data': jsonValue // from form
+		                        },
+		                 success: function(){
+		                 	console.log(" *<DEBUG>* Success submit");
+		                 }
+		            });
+		            return false; //<---- move it here
+		       });
+
+		});
 
 
       }
