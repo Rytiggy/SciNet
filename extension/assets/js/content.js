@@ -11,7 +11,7 @@ chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
   	//JSON array of acceptable sites to parse
   	//http://science.sciencemag.org/
   	//document.location.hostname
-  	obj = [
+  var obj = [
 	  	{
 			"site": "science.sciencemag.org"
 		}, 
@@ -49,42 +49,36 @@ for (var i = 0; i <= obj.length; i++)
 
 
 
-      	var jsonValue ={ site :{
-      		 "text": [
-      			 {"author": aAuthor},
-      			 {"date": splitData[0]},
-      			 {"vol": splitData[1]},
-      			 {"doi": splitData[2]},
-      			 {"paperName": aName},
-      			 {"summary": aSummary}
-      		 ]}
-      		};
+      	var data ={
+			    "data": {
+			        "type": "citations",
+			        "id": null,
+			        "attributes": {
+			            "name": aName,
+			            "authors": aAuthor,
+			            "datepublished": splitData[0],
+			            "doi": splitData[2],
+			            "summary": aSummary
+			        }
+			    }
+			};
 
-      	console.log(JSON.stringify(jsonValue));
+		var url = "127.0.0.1:8000/api/citations/";
 
 
-		$(document).ready(function() {
-		       $("#test").submit(function(event){
-		       	  console.log(" *<DEBUG>* Preparing Ajax");
-		            $.ajax({
-		                 type:"POST",
-		                 url:"/api/citations/",
-		                 data: {
-		                        'data': jsonValue // from form
-		                        },
-		                 success: function(){
-		                 	console.log(" *<DEBUG>* Success submit");
-		                 }
-		            });
-		            return false; //<---- move it here
-		       });
-
+		$.post(url,   // url
+		       JSON.stringify(data), // data to be submit
+		       function(data, status, jqXHR) {// success callback
+		                console.log('status: ' + status + ', data: ' + data);
 		});
 
 
-      }
+
+		 //console.log(JSON.stringify(data));
+
+     }//end of if 
   	}catch(err){
-  	  //console.log("Error code 0 dont worry about this" + err);
+  	  console.log("Error code 0 dont worry about this" + err);
 
   	}
 
