@@ -25,7 +25,7 @@ SECRET_KEY = 'g&)6!!z@2qwcv^op8y(#5+lz)$=6p2u4(y)2)4lx&9no)90+z1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '127.0.0.1:8000']
 
 
 # Application definition
@@ -43,7 +43,11 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'google.com',
+    '127.0.0.1:8000/api/citations',
+    '127.0.0.1:8000'
+)
 
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10,

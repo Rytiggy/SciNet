@@ -49,32 +49,94 @@ for (var i = 0; i <= obj.length; i++)
 
 
 
-      	var data ={
-			    "data": {
-			        "type": "citations",
-			        "id": null,
-			        "attributes": {
-			            "name": aName,
-			            "authors": aAuthor,
-			            "datepublished": splitData[0],
-			            "doi": splitData[2],
-			            "summary": aSummary
-			        }
-			    }
-			};
-
-		var url = "127.0.0.1:8000/api/citations/";
-
-
-		$.post(url,   // url
-		       JSON.stringify(data), // data to be submit
-		       function(data, status, jqXHR) {// success callback
-		                console.log('status: ' + status + ', data: ' + data);
-		});
+   //    	var data ={
+			//     "data": {
+			//         "type": "citations",
+			//         "id": null,
+			//         "attributes": {
+			//             "name": aName,
+			//             "authors": aAuthor,
+			//             "datepublished": splitData[0],
+			//             "doi": splitData[2],
+			//             "summary": aSummary
+			//         }
+			//     }
+			// };
 
 
 
-		 //console.log(JSON.stringify(data));
+
+
+
+$(document).ready(function() {
+
+
+        var data = {
+		    "data": {
+		        "type": "citations",
+		        "id": 5,
+		        "attributes": {
+		            "name": "highwire-cite-title",
+		            "authors": "mm",
+		            "datepublished": "334",
+		            "doi": "mm",
+		            "summary": "mdvkmd"
+		        }
+		    }
+		};
+
+		var url = "http://127.0.0.1:8000/api/citations";
+		
+		console.log("first post");
+        console.log('data BEFORE SEND',JSON.stringify(data));
+
+		var csrftoken = getCookie('csrftoken');
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (settings.type == 'POST' || settings.type == 'PUT' || settings.type == 'DELETE') {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    }
+});
+
+
+        $.ajax({
+            "type": "POST",
+            "dataType": "json",
+            "url": url,
+            "data": data,
+            "success": function(result) {
+                console.log(result);
+            },
+			 error: function (jqXHR, status, err) {
+			   console.log("Local error callback." , status, jqXHR, err);
+			 },
+        });
+
+
+
+
+});
+
+
 
      }//end of if 
   	}catch(err){
@@ -85,7 +147,21 @@ for (var i = 0; i <= obj.length; i++)
 }
 
 
-
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 
 
 
