@@ -1,6 +1,11 @@
 // content.js
 
 
+
+//usage:
+
+
+
 // logs URL of the first external link on the page
 var firstHref = $("a[href^='http']").eq(0).attr("href");
 
@@ -74,7 +79,6 @@ $(document).ready(function() {
         var data = {
 		    "data": {
 		        "type": "citations",
-		        "id": 5,
 		        "attributes": {
 		            "name": "highwire-cite-title",
 		            "authors": "mm",
@@ -85,45 +89,14 @@ $(document).ready(function() {
 		    }
 		};
 
-		var url = "http://127.0.0.1:8000/api/citations";
-		
-		console.log("first post");
-        console.log('data BEFORE SEND',JSON.stringify(data));
-
-		var csrftoken = getCookie('csrftoken');
-$.ajaxSetup({
-    beforeSend: function(xhr, settings) {
-        if (settings.type == 'POST' || settings.type == 'PUT' || settings.type == 'DELETE') {
-            function getCookie(name) {
-                var cookieValue = null;
-                if (document.cookie && document.cookie != '') {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                        var cookie = jQuery.trim(cookies[i]);
-                        // Does this cookie string begin with the name we want?
-                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
-                    }
-                }
-                return cookieValue;
-            }
-            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-                // Only send the token to relative URLs i.e. locally.
-                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-            }
-        }
-    }
-});
-
+	        console.log('data BEFORE SEND',JSON.stringify(data));
 
         $.ajax({
-            "type": "POST",
-            "dataType": "json",
-            "url": url,
-            "data": data,
-            "success": function(result) {
+        	url: "http://127.0.0.1:8000/api/citations",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: function(result) {
                 console.log(result);
             },
 			 error: function (jqXHR, status, err) {
@@ -146,22 +119,6 @@ $.ajaxSetup({
 
 }
 
-
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
 
 
 

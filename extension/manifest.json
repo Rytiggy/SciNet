@@ -17,9 +17,7 @@
          ]
       }
    ],
-   "permissions": [
-      "tabs"
-  ],
+  "permissions": [ "cookies", "tabs", "http://*/*", "https://*/*","http://127.0.0.1:8000/api/citations" ],
    "browser_action":{  
       "default_icon":"assets/img/icon.png",
       "default_popup":"popup.html"
