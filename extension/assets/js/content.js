@@ -76,7 +76,7 @@ for (var i = 0; i <= obj.length; i++)
 $(document).ready(function() {
 
 
-        var data = {
+        var aCitation = {
 		    "data": {
 		        "type": "citations",
 		        "attributes": {
@@ -89,13 +89,13 @@ $(document).ready(function() {
 		    }
 		};
 
-	        console.log('data BEFORE SEND',JSON.stringify(data));
+	        console.log('data BEFORE SEND',JSON.stringify(aCitation));
 
         $.ajax({
         	url: "http://127.0.0.1:8000/api/citations",
             type: "POST",
-            dataType: "json",
-            data: JSON.stringify(data),
+            dataType: "JSON",
+            data: aCitation,
             success: function(result) {
                 console.log(result);
             },
