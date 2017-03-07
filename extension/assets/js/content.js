@@ -75,30 +75,30 @@ for (var i = 0; i <= obj.length; i++)
 
 $(document).ready(function() {
 
-
-        var aCitation = {
-		    "data": {
-		        "type": "citations",
-		        "attributes": {
-		            "name": "highwire-cite-title",
-		            "authors": "mm",
-		            "datepublished": "334",
-		            "doi": "mm",
-		            "summary": "mdvkmd"
-		        }
+		var aCitation = {
+            "name": "somename",
+            "authors": "someguy",
+            "datepublished": "day",
+            "doi": "n/a",
+            "summary": "somesummary"
 		    }
-		};
 
-	        console.log('data BEFORE SEND',JSON.stringify(aCitation));
+
+
+
+
+	        //console.log('data BEFORE SEND',JSON.stringify(aCitation));
 
         $.ajax({
         	url: "http://127.0.0.1:8000/api/citations",
             type: "POST",
-            dataType: "JSON",
-            data: aCitation,
-            success: function(result) {
-                console.log(result);
-            },
+            data: "name=dude&authors=bda&datepublished=1.1.2&doi=fvdb&summary=aglaaen",
+             success: function(data, textStatus, xhr) {
+			    console.log(xhr.status, data,textStatus);
+			  },
+			  complete: function(xhr, textStatus) {
+			    console.log(xhr.status, textStatus);
+			  },
 			 error: function (jqXHR, status, err) {
 			   console.log("Local error callback." , status, jqXHR, err);
 			 },
