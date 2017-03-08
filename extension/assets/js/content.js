@@ -53,46 +53,12 @@ for (var i = 0; i <= obj.length; i++)
       	});
 
 
-
-   //    	var data ={
-			//     "data": {
-			//         "type": "citations",
-			//         "id": null,
-			//         "attributes": {
-			//             "name": aName,
-			//             "authors": aAuthor,
-			//             "datepublished": splitData[0],
-			//             "doi": splitData[2],
-			//             "summary": aSummary
-			//         }
-			//     }
-			// };
-
-
-
-
-
-
 $(document).ready(function() {
-
-		var aCitation = {
-            "name": "somename",
-            "authors": "someguy",
-            "datepublished": "day",
-            "doi": "n/a",
-            "summary": "somesummary"
-		    }
-
-
-
-
-
-	        //console.log('data BEFORE SEND',JSON.stringify(aCitation));
 
         $.ajax({
         	url: "http://127.0.0.1:8000/api/citations",
             type: "POST",
-            data: "name=dude&authors=bda&datepublished=1.1.2&doi=fvdb&summary=aglaaen",
+            data: "name="+aName+"&authors="+aAuthor+"&datepublished="+splitData[0]+"&doi="+splitData[2]+"&summary="+aSummary,
              success: function(data, textStatus, xhr) {
 			    console.log(xhr.status, data,textStatus);
 			  },
@@ -103,9 +69,6 @@ $(document).ready(function() {
 			   console.log("Local error callback." , status, jqXHR, err);
 			 },
         });
-
-
-
 
 });
 
