@@ -10,12 +10,8 @@
 var firstHref = $("a[href^='http']").eq(0).attr("href");
 
 chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-  // console.log(response.farewell);
-  // console.log(response.url);
 
-  	//JSON array of acceptable sites to parse
-  	//http://science.sciencemag.org/
-  	//document.location.hostname
+  //JSON array of acceptable sites to parse
   var obj = [
 	  	{
 			"site": "science.sciencemag.org"
@@ -24,7 +20,6 @@ chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
 			"site": "ryanmasonline.com"
 		}
 	]
-var jsonBLOB = null;
 
 for (var i = 0; i <= obj.length; i++)
 {
@@ -32,11 +27,11 @@ for (var i = 0; i <= obj.length; i++)
       var site = obj[i].site;
       var aAuthor,aDate,aName,aSummary,splitData;
 
-      //Should I run on this site?
+      //checks if it should run on this site from a list 
       if(document.location.hostname == site && window.location.pathname != "/"){
       	
 
-      	//Toggle stats tell them we are running]
+      	//Toggle stats tell them we are running
       	$( ".stats" ).find('span').addClass( ".text-success" );
 
 
@@ -82,15 +77,6 @@ $(document).ready(function() {
 
 }
 
-
-
-
-
-
-  // if (response.url.includes("google")) {
-  //   // look for citations to parse :~)
-  //   console.log("looking for citations...");
-  // }
 });
 
 
