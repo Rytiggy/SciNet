@@ -14,3 +14,7 @@ Make sure all new migrations and changes to the database schema have been made b
 `python manage.py migrate` in order, 
 
 then start up the server by running the command: `python manage.py runserver`.
+    
+## Todos
+>Expand to multiple websites, currently working on http://science.sciencemag.org/
+>Add website name as a way to tell where each entry is from
