@@ -18,4 +18,4 @@ then start up the server by running the command: `python manage.py runserver`.
 ## Todos
 Expand to multiple websites, currently working on http://science.sciencemag.org/ <br />
 Add website name as a way to tell where each entry is from
-Refacto frontend
+Refactor frontend
